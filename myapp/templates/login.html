@@ -1,0 +1,64 @@
+{% extends 'header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+tr,td{
+	padding: 10px;
+}
+</style>
+{% block javascript %}
+ <script>
+    $("#email").change(function () {
+      var username = $(this).val();
+
+      $.ajax({
+        url: '/ajax/validate_login/',
+        data: {
+          'username': username
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (!data.is_taken) {
+            document.getElementById("email_error").innerHTML="Email Not Found"
+          }
+          else{
+          	document.getElementById("email_error").innerHTML=""	
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
+</head>
+<body>
+
+<center>
+<h1>Login</h1>
+{% if msg %}
+	{{msg}}
+{% endif %}
+<form name="login" method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+	<table>
+		
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="email" id="email"></td>
+			<td><span id="email_error"></span></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="password" name="password"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" value="Login" class="btn btn-primary"></td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+	
+</head>
+<body>
+
+<div class="stage">
+
+	<div id="SLDR-ONE" class="sldr">
+		<ul class="wrp animate">
+			<li class="elmnt-one"><div class="skew"><div class="wrap"><img src="{% static 'img/b1.jpg' %}" width="1000" height="563"></div></div></li>
+			<li class="elmnt-two"><div class="skew"><div class="wrap"><img src="{% static 'img/b2.jpg' %}" width="1000" height="563"></div></div></li>
+			<li class="elmnt-three"><div class="skew"><div class="wrap"><img src="{% static 'img/b3.jpg' %}" width="1000" height="563"></div></div></li>
+			<li class="elmnt-four"><div class="skew"><div class="wrap"><img src="{% static 'img/b4.jpg' %}" width="1000" height="563"></div></div></li>
+			<li class="elmnt-four"><div class="skew"><div class="wrap"><img src="{% static 'img/b5.jpg' %}" width="1000" height="563"></div></div></li>
+			<li class="elmnt-four"><div class="skew"><div class="wrap"><img src="{% static 'img/b6.jpg' %}" width="1000" height="563"></div></div></li>
+		</ul>
+	</div>
+
+	<div class="clear"></div>
+
+	
+	<ul class="selectors">
+		<li class="focalPoint"><a href="">•</a></li><li><a href="">•</a></li><li><a href="">•</a></li><li><a href="">•</a></li>
+	</ul>
+
+	<button class="sldr-prv sldr-nav prev">Prev</button>
+	<button class="sldr-nxt sldr-nav next">Next</button>
+
+	
+	<p style="float:left;">&#8596;&nbsp;</p>
+	<p style="float:right;">&nbsp;&#8596;</p>
+
+	<div class="clear"></div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+</div>
+<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+<script src="{% static 'js/jquery.sldr.js' %}"></script>
+<script>
+
+$( window ).load( function() {
+
+	$( '.sldr' ).each( function() {
+		var th = $( this );
+		th.sldr({
+			focalClass    : 'focalPoint',
+			offset        : th.width() / 2,
+			sldrWidth     : 'responsive',
+			nextSlide     : th.nextAll( '.sldr-nav.next:first' ),
+			previousSlide : th.nextAll( '.sldr-nav.prev:first' ),
+			selectors     : th.nextAll( '.selectors:first' ).find( 'li' ),
+			toggle        : th.nextAll( '.captions:first' ).find( 'div' ),
+			sldrInit      : sliderInit,
+			sldrStart     : slideStart,
+			sldrComplete  : slideComplete,
+			sldrLoaded    : sliderLoaded,
+			sldrAuto      : true,
+			sldrTime      : 5000,
+			hasChange     : true
+		});
+	});
+
+});
+
+/**
+ * Sldr Callbacks
+ */
+
+/**
+ * When the sldr is initiated, before the DOM is manipulated
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function sliderInit( args ) {
+
+}
+
+/**
+ * When individual slides are loaded
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideLoaded( args ) {
+
+}
+
+/**
+ * When the full slider is loaded, after the DOM is manipulated
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function sliderLoaded( args ) {
+
+}
+
+/**
+ * Before the slides change focal points
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideStart( args ) {
+
+}
+
+/**
+ * After the slides are done changing focal points
+ * @param {object} args the slides, callback, and config of the slider
+ * @return null
+ */
+function slideComplete( args ) {
+
+}
+
+</script>
+</body>
+</html>
+{% endblock %}

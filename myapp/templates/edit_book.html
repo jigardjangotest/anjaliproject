@@ -1,0 +1,59 @@
+{% extends 'seller_header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+tr,td{
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<center>
+<h1>Edit Book</h1>
+{% if msg %}
+	{{msg}}
+{% endif %}
+<form name="edit_book" method="post" action="{% url 'edit_book' pk=book.pk %}" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>Book Subject</td>
+			<td><input type="text" name="book_subject" value="{{book.book_subject}}" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<td>Book Name</td>
+			<td><input type="text" name="book_name" value="{{book.book_name}}"></td>
+		</tr>
+		<tr>
+			<td>Book Author</td>
+			<td><input type="text" name="book_author" value="{{book.book_author}}"></td>
+		</tr>
+		<tr>
+			<td>Book Price</td>
+			<td><input type="text" name="book_price" value="{{book.book_price}}"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<img src="{{book.book_image.url}}" width="100px" height="100px">
+			</td>
+		</tr>
+		<tr>
+			<td>Book Image</td>
+			<td><input type="file" name="book_image"></td>
+		</tr>
+		<tr>
+			<td>Book Description</td>
+			<td><textarea rows="5" cols="22" name="book_desc">{{book.book_desc}}</textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" value="Update Book" class="btn btn-primary"></td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %}
